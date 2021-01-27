@@ -1,0 +1,19 @@
+.wrapper{
+    width: 1024px;
+    margin: 0 auto;
+}
+.fond_bleu{
+    background-color: #039be5;
+}
+.fond_jaune{
+    background-color: #fff176;
+}
+.text_vert{
+    color: #43a047;
+}
+.text_noir{
+    color: black;
+}
+.size_texte_24{
+    font-size: 24px;
+}

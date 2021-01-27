@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Jeu de Mémoire</title>
+</head>
+
+<body class="fond_bleu">
+    <div class="wrapper">
+        <header>
+            <section>
+                <article>
+                    <ul class="collection with-header">
+                        <li class="collection-header">
+                            <h4 class=" text_vert">Jeu de Mémoire</h4>
+                        </li>
+                    </ul>
+                </article>
+            </section>
+            <section>
+                <div></div>
+                <article>
+                    <label for="GET" class="size_texte_24">Configuration du jeu de mémoire
+                        <form action="#" meta="GET">
+                            <input type="number" name="nombreCarte"
+                                placeholder="Entré le nombre de carte que vous voulez">
+                            <input type="text" name="nomUtilisateur" placeholder="Entré votre nom">
+                    </label>
+                    </form>
+                    <button class="btn waves-effect waves-light" type="submit" name="action">Valider
+                        <i class="material-icons right"></i>
+                    </button>
+                </article>
+            </section>
+        </header>
+    </div>
+</body>
+<script src="script.js"></script>
+
+</html>
