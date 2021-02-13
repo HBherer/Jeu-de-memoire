@@ -3,22 +3,26 @@
     margin: 0 auto;
 }
 .fond_bleu{
-    background-color: #039be5;
+    background-color: #75757575;
 }
 .fond_jaune{
     background-color: #fff176;
-}
-.text_vert{
-    color: #43a047;
 }
 .text_noir{
     color: black;
 }
 .size_texte_24{
     font-size: 24px;
+    color: black;
+    font-weight: bold !important;
 }
 .message{
     color: red;
     background-color: yellow;
 
+}
+.titre{
+    border: solid black;
+    background-color: #3d34;
+    font-size: 50px !important;
 }
