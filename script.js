@@ -7,12 +7,12 @@ let pairesTrouvees = 0
 let pairesATrouvees;
 
 let btnValidate = document.getElementById("valider")
-btnValidate.addEventListener("click", genererBoutons)
+btnValidate.addEventListener("click", validation)
+
 
 
 
 function genererBoutons() {
-  afficheNomJoueur()
   let nombrePaires = document.getElementById("nbCarteEntrer").value
   nombrePaires = parseInt(nombrePaires)
   const nbTours = nombrePaires
@@ -34,11 +34,11 @@ function genererBoutons() {
   jeu.innerHTML = ""
   for (let i = 0; i < nombreBoutons; i++) {
     const bouton = document.createElement("button")
-    bouton.style.height = "80px"
-    bouton.style.width = "50px"
-    bouton.style.backgroundColor = "green"
+    bouton.style.height = "100px"
+    bouton.style.width = "60px"
+    bouton.style.backgroundColor = "white"
     let texte = document.createTextNode("")
-    texte = document.createTextNode("?")
+    texte = document.createTextNode("♣")
     bouton.setAttribute("data-nombre-cache", tableauCartesMelangees[i])
     bouton.appendChild(texte)
     bouton.addEventListener("click", retournerCarte)
@@ -53,8 +53,16 @@ function retournerCarte(e) {
   carteRetourner.appendChild(texte)
 }
 
+
+function clicCarte(){
+
+}
+
+
+
 function afficheNomJoueur(){
   let nom = document.createElement("P")
+  nomAfficher.innerHTML = ""
   let nomUser = document.getElementById("nomUser").value
   let texte = document.createTextNode(nomUser)
   nom.appendChild(texte)
@@ -62,43 +70,29 @@ function afficheNomJoueur(){
 }
 
 
-
-
-
-
-
-function validation() {
+function validation(e) {
   $("form[name='formulaire']").validate({
     rules: {
       nombreCarte: {
         required: true,
-        minlength: 1,
         number: true,
       },
       nomUtilisateur: {
         required: true,
-        minlength: 1
       },
     },
     messages: {
       nombreCarte: "Veuillez entrer un nombre paire entre 2 et 10 inclusivement",
       nomUtilisateur: "Veuillez entrer votre nom",
-      minlength: "Un minimum de un donnée"
     },
+    submitHandler: function(form, event) {
+       event.preventDefault();
+       afficheNomJoueur()
+       genererBoutons()
+    }
   })
-};
-
-
-
-function teste(){
-  let formu = $("#formConfig")
-  if (formu = true) {
-    genererBoutons
-  }
-  else {
-    alert("no no pas bon")
-  }
 }
+
 
 
 

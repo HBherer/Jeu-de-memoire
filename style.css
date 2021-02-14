@@ -26,3 +26,8 @@
     background-color: #3d34;
     font-size: 50px !important;
 }
+#jeu > button{
+    border: 2px solid red !important;
+    margin: 8px;
+    border-radius: 5px;
+}
