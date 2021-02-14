@@ -10,11 +10,12 @@ let btnValidate = document.getElementById("valider")
 btnValidate.addEventListener("click", teste)
 
 function teste(){
-  if (validation() = true){
+  let formu = document.getElementById("formConfig").value
+  if (formu = true) {
     genererBoutons
   }
   else {
-    alert("no no spa bon")
+    alert("no no pas bon")
   }
 }
 
@@ -70,26 +71,24 @@ function retournerCarte(e) {
 
 function validation() {
   $("form[name='formulaire']").validate({
-    
     rules: {
       nombreCarte: {
         required: true,
-        
+        minlength: 1,
+        number: true
       },
       nomUtilisateur: {
         required: true,
-      }
+        minlength: 1
+      },
     },
     messages: {
       nombreCarte: "Veuillez entrer un nombre paire entre 2 et 10 inclusivement",
       nomUtilisateur: "Veuillez entrer votre nom",
+      minlength: "Un minimum de un donnée"
     },
-    
-  });
+  })
 };
-jQuery.validate.setDefault({
-  
-})
 
 //const form = document.getElementById("formConfig")
 //form.addEventListener("submit, valider")
