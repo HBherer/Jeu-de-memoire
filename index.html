@@ -17,19 +17,20 @@
                     <ul class="titre collection with-header">
                         <li class="collection-header transparent z-depth-0 center">
                             <h4 class="">Jeu de Mémoire</h4>
+                            <div id="nomAfficher"></div>
                         </li>
                     </ul>
                 </article>
             </section>
             <section>
-                <article>
-                    <form action="" onsubmit="return true" name="formulaire" method="GET" id="formConfig">
+                <article id="formul">
+                    <form action="index.html" onsubmit="return false" name="formulaire" method="GET" id="formConfig">
                         <label class="size_texte_24">Configuration du jeu de mémoire
                             <input class="nombreCarte" type="number" id="nbCarteEntrer" name="nombreCarte"
                                 placeholder="Entré le nombre de carte que vous voulez">
-                            <input type="text" name="nomUtilisateur" placeholder="Entré votre nom">
+                            <input type="text" id="nomUser" name="nomUtilisateur" placeholder="Entré votre nom">
                         </label>
-                        <button id="valider" class="btn waves-effect waves-light " name="action"
+                        <button type="submit" id="valider" class="btn waves-effect waves-light " name="action"
                             aria-required="">Valider
                             <i class="material-icons right"></i>
                         </button>

@@ -7,21 +7,12 @@ let pairesTrouvees = 0
 let pairesATrouvees;
 
 let btnValidate = document.getElementById("valider")
-btnValidate.addEventListener("click", teste)
-
-function teste(){
-  let formu = document.getElementById("formConfig").value
-  if (formu = true) {
-    genererBoutons
-  }
-  else {
-    alert("no no pas bon")
-  }
-}
+btnValidate.addEventListener("click", genererBoutons)
 
 
 
 function genererBoutons() {
+  afficheNomJoueur()
   let nombrePaires = document.getElementById("nbCarteEntrer").value
   nombrePaires = parseInt(nombrePaires)
   const nbTours = nombrePaires
@@ -36,6 +27,7 @@ function genererBoutons() {
     tableauCartesMelangees.push(tableauCartes[index]);
     tableauCartes.splice(index, 1);
   }
+  formul.innerHTML = ""
   let nombreBoutons = tableauCartesMelangees.length
   // const message = valider(parametre)
   const jeu = document.getElementById("jeu")
@@ -61,7 +53,13 @@ function retournerCarte(e) {
   carteRetourner.appendChild(texte)
 }
 
-
+function afficheNomJoueur(){
+  let nom = document.createElement("P")
+  let nomUser = document.getElementById("nomUser").value
+  let texte = document.createTextNode(nomUser)
+  nom.appendChild(texte)
+  nomAfficher.appendChild(nom)
+}
 
 
 
@@ -75,7 +73,7 @@ function validation() {
       nombreCarte: {
         required: true,
         minlength: 1,
-        number: true
+        number: true,
       },
       nomUtilisateur: {
         required: true,
@@ -89,6 +87,20 @@ function validation() {
     },
   })
 };
+
+
+
+function teste(){
+  let formu = $("#formConfig")
+  if (formu = true) {
+    genererBoutons
+  }
+  else {
+    alert("no no pas bon")
+  }
+}
+
+
 
 //const form = document.getElementById("formConfig")
 //form.addEventListener("submit, valider")
