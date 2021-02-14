@@ -7,11 +7,21 @@ let pairesTrouvees = 0
 let pairesATrouvees;
 
 let btnValidate = document.getElementById("valider")
-btnValidate.addEventListener("click", genererBoutons)
+btnValidate.addEventListener("click", teste)
+
+function teste(){
+  if (validation() = true){
+    genererBoutons
+  }
+  else {
+    alert("no no spa bon")
+  }
+}
 
 
-function melangerCarte() {
-  let nombrePaires = document.getElementById("nbCarteEntrer").values
+
+function genererBoutons() {
+  let nombrePaires = document.getElementById("nbCarteEntrer").value
   nombrePaires = parseInt(nombrePaires)
   const nbTours = nombrePaires
   const tableauCartes = []
@@ -19,19 +29,13 @@ function melangerCarte() {
     tableauCartes.push(i)
     tableauCartes.push(i)
   }
-  const tableauCartesMelangees = []
+  var tableauCartesMelangees = []
   while (tableauCartes.length > 0) {
-    const index = Math.floor(Math.random() * tableauCartes.length)
-    tableauCartesMelangees.push(tableauCartes[index])
-    tableauCartes.splice(index, 1)
+    const index = Math.floor(Math.random() * tableauCartes.length);
+    tableauCartesMelangees.push(tableauCartes[index]);
+    tableauCartes.splice(index, 1);
   }
-}
-
-
-
-function genererBoutons() {
-  let nombreBoutons = document.getElementById("nbCarteEntrer").value
-  nombreBoutons = parseInt(nombreBoutons)
+  let nombreBoutons = tableauCartesMelangees.length
   // const message = valider(parametre)
   const jeu = document.getElementById("jeu")
   jeu.innerHTML = ""
@@ -42,19 +46,17 @@ function genererBoutons() {
     bouton.style.backgroundColor = "green"
     let texte = document.createTextNode("")
     texte = document.createTextNode("?")
-    bouton.setAttribute("data-nombre-cache", i)
+    bouton.setAttribute("data-nombre-cache", tableauCartesMelangees[i])
     bouton.appendChild(texte)
     bouton.addEventListener("click", retournerCarte)
     jeu.appendChild(bouton)
   }
 }
 
-
-function retournerCarte(e){
-  let texte = document.createTextNode("")
+function retournerCarte(e) {
   const carteRetourner = e.target
   const nombre = carteRetourner.getAttribute("data-nombre-cache")
-  texte = document.createTextNode(nombre)
+  let texte = document.createTextNode(nombre)
   carteRetourner.appendChild(texte)
 }
 
@@ -68,17 +70,26 @@ function retournerCarte(e){
 
 function validation() {
   $("form[name='formulaire']").validate({
+    
     rules: {
-      nombreCarte: "required",
-      nomUtilisateur: "required",
+      nombreCarte: {
+        required: true,
+        
+      },
+      nomUtilisateur: {
+        required: true,
+      }
     },
     messages: {
-      nombreCarte: "Veuillez entrer un nombre paire de carte entre 2 et 10 inclusivement",
+      nombreCarte: "Veuillez entrer un nombre paire entre 2 et 10 inclusivement",
       nomUtilisateur: "Veuillez entrer votre nom",
     },
+    
   });
 };
-
+jQuery.validate.setDefault({
+  
+})
 
 //const form = document.getElementById("formConfig")
 //form.addEventListener("submit, valider")
