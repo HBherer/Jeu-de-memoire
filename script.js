@@ -1,33 +1,68 @@
 "use strict"
-$(document).ready(validation ());
+$(document).ready(validation());
 
 
 let catesTournees = []
 let pairesTrouvees = 0
 let pairesATrouvees;
 
-let btnValidate = document.getElementsByName("action")
+let btnValidate = document.getElementById("valider")
+btnValidate.addEventListener("click", genererBoutons)
 
 
-function genererCarte() {
-  const nombrePaires = document.getElementsByName("nombreCarte")[0].values
+function melangerCarte() {
+  let nombrePaires = document.getElementById("nbCarteEntrer").values
+  nombrePaires = parseInt(nombrePaires)
   const nbTours = nombrePaires
   const tableauCartes = []
   for (let i = 0; i < nbTours; i++) {
     tableauCartes.push(i)
     tableauCartes.push(i)
   }
-
   const tableauCartesMelangees = []
   while (tableauCartes.length > 0) {
     const index = Math.floor(Math.random() * tableauCartes.length)
     tableauCartesMelangees.push(tableauCartes[index])
     tableauCartes.splice(index, 1)
-
-  } console.log(tableauCartes)
-  console.log(tableauCartesMelangees)
-  console.log(nombrePaires)
+  }
 }
+
+
+
+function genererBoutons() {
+  let nombreBoutons = document.getElementById("nbCarteEntrer").value
+  nombreBoutons = parseInt(nombreBoutons)
+  // const message = valider(parametre)
+  const jeu = document.getElementById("jeu")
+  jeu.innerHTML = ""
+  for (let i = 0; i < nombreBoutons; i++) {
+    const bouton = document.createElement("button")
+    bouton.style.height = "80px"
+    bouton.style.width = "50px"
+    bouton.style.backgroundColor = "green"
+    let texte = document.createTextNode("")
+    texte = document.createTextNode("?")
+    bouton.setAttribute("data-nombre-cache", i)
+    bouton.appendChild(texte)
+    bouton.addEventListener("click", retournerCarte)
+    jeu.appendChild(bouton)
+  }
+}
+
+
+function retournerCarte(e){
+  let texte = document.createTextNode("")
+  const carteRetourner = e.target
+  const nombre = carteRetourner.getAttribute("data-nombre-cache")
+  texte = document.createTextNode(nombre)
+  carteRetourner.appendChild(texte)
+}
+
+
+
+
+
+
 
 
 

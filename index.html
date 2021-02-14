@@ -26,11 +26,11 @@
                 <article>
                     <form action="#" name="formulaire" method="GET" id="formConfig">
                         <label class="size_texte_24">Configuration du jeu de mémoire
-                            <input class="nombreCarte" type="number" name="nombreCarte"
+                            <input class="nombreCarte" type="number" id="nbCarteEntrer" name="nombreCarte"
                                 placeholder="Entré le nombre de carte que vous voulez">
                             <input type="text" name="nomUtilisateur" placeholder="Entré votre nom">
                         </label>
-                        <button class="btn waves-effect waves-light " name="action"
+                        <button id="valider" class="btn waves-effect waves-light " name="action"
                             aria-required="">Valider
                             <i class="material-icons right"></i>
                         </button>
@@ -38,6 +38,9 @@
                 </article>
             </section>
         </header>
+        <main>
+            <div id="jeu"></div>
+        </main>
     </div>
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
