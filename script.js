@@ -10,6 +10,32 @@ let btnValidate = document.getElementById("valider")
 btnValidate.addEventListener("click", validation)
 
 
+//function afficheTimer() {
+//  let time = document.createElement("P")
+//  const tempsAfficher = document.getElementById("tempsAfficher")
+//  let texte = document.createTextNode(demarrerTimer())
+//  time.appendChild(texte)
+//  tempsAfficher.appendChild(time)
+//}
+
+var intervale
+
+function demarrerTimer() {
+  let temps = 3
+  document.getElementById("tempsAfficher").innerHTML = temps
+  intervale = setInterval(diminuerParSeconde, 1000)
+  return intervale
+}
+function diminuerParSeconde(intervale) {
+  let temps = document.getElementById("tempsAfficher").innerHTML
+  temps = parseInt(temps)
+  document.getElementById("tempsAfficher").innerHTML = temps - 1
+  if (temps - 1 === 0) {
+    clearInterval(intervale)
+    // Ajouter function de fin de temps et de jeu
+  }
+}
+
 
 
 function clicCarte(e) {
@@ -28,24 +54,25 @@ function clicCarte(e) {
       }
     }
     else {
-      setInterval(retourCarteZero(e), 2000)
+      setTimeout(retourCarteZero, 1000, (e))
     }
   }
 }
 
-function retourCarteZero(e){
+
+function retourCarteZero(e) {
   retourCarteZero1(e)
   retourCarteZero2(e)
 }
 
 function retourCarteZero2(e) {
   let derniereCarteClick1 = e.target
-      derniereCarteClick1.textContent = " "
-      let zero2 = document.createTextNode("♣")
-      derniereCarteClick1.appendChild(zero2)
+  derniereCarteClick1.textContent = " "
+  let zero2 = document.createTextNode("♣")
+  derniereCarteClick1.appendChild(zero2)
 }
 
-function retourCarteZero1(e) {
+function retourCarteZero1() {
   for (let i = 0; i < cartesTournees.length; i++) {
     let derniereCarteClick = cartesTournees[i]
     derniereCarteClick.textContent = " "
@@ -53,7 +80,6 @@ function retourCarteZero1(e) {
     derniereCarteClick.appendChild(zero)
     cartesTournees[i].disabled = false
     cartesTournees.splice(0);
-    console.log(cartesTournees)
   }
 }
 
@@ -138,16 +164,8 @@ function validation(e) {
     submitHandler: function (form, event) {
       event.preventDefault();
       afficheNomJoueur()
+      demarrerTimer()
       genererBoutons()
     }
   })
 }
-
-
-
-
-
-
-// setTimeout(nomDeLaFonction, 2000)
-// setInterval(nomVariable, 2000)
-// clearInterval(laVariable)

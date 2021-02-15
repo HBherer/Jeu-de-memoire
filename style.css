@@ -31,3 +31,11 @@
     margin: 8px;
     border-radius: 5px;
 }
+#nomAfficher{
+    font-size: 28px;
+    font-weight: bold;
+}
+#tempsAfficher{
+    font-size: 16px;
+    font-weight: bold;
+}
