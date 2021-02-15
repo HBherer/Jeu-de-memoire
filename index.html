@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
@@ -9,27 +9,22 @@
     <title>Jeu de Mémoire</title>
 </head>
 
-<body class="fond_bleu">
-    <div class="wrapper">
+<body class="fondCouleur">
+    <div class="wrappe">
         <header>
             <section>
-                <article>
-                    <ul class="titre collection with-header">
-                        <li class="collection-header transparent z-depth-0 center">
-                            <h4 class="">Jeu de Mémoire</h4>
+                <article class="titre center">
+                            <h3 class="">Jeu de Mémoire</h3>
                             <div id="nomAfficher"></div>
                             <div id="tempsAfficher"></div>
-                        </li>
-                    </ul>
                 </article>
             </section>
-            <section>
+            <section class="container">
                 <article id="formul" class="center">
                     <form action="index.html" onsubmit="return false" name="formulaire" method="GET" id="formConfig">
                         <label class="size_texte_24">Configuration du jeu de mémoire
-                            <input class="box nombreCarte" type="number" id="nbCarteEntrer" name="nombreCarte"
-                                placeholder="Entré le nombre de carte que vous voulez">
-                            <input type="text" id="nomUser" name="nomUtilisateur" placeholder="Entré votre nom">
+                            <input class="box nombreCarte" type="number" step="2" id="nbCarteEntrer" name="nombreCarte" placeholder="Entré le nombre de carte que vous voulez">
+                            <input class="box" type="text" id="nomUser" name="nomUtilisateur" placeholder="Entré votre nom">
                         </label>
                         <button type="submit" id="valider" class="btn waves-effect waves-light " name="action"
                             aria-required="">Valider
@@ -39,7 +34,7 @@
                 </article>
             </section>
         </header>
-        <main>
+        <main class="container center">
             <div id="jeu"></div>
             <div id="message"></div>
         </main>

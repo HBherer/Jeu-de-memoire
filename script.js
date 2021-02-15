@@ -170,7 +170,13 @@ function afficheNomJoueur() {
   nom.appendChild(texte)
   nomAfficher.appendChild(nom)
 }
-
+jQuery.validator.addMethod("fullname", function(value, element) {
+  if (/^([a-zA-Z]{2,}\s[a-zA-z]{1,}'?-?[a-zA-Z]{2,}\s?([a-zA-Z]{1,})?)/.test(value)) {
+    return true;
+  } else {
+    return false;
+  };
+})
 
 function validation(e) {
   $("form[name='formulaire']").validate({
@@ -178,9 +184,12 @@ function validation(e) {
       nombreCarte: {
         required: true,
         number: true,
+        min: 2,
+        max: 10, 
       },
       nomUtilisateur: {
         required: true,
+        fullname: true,
       },
     },
     messages: {

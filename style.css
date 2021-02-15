@@ -2,8 +2,15 @@
     width: 1024px;
     margin: 0 auto;
 }
-.fond_bleu{
-    background-color: #75757575;
+html{
+    margin: 0 auto;
+}
+body{
+    margin: 0 auto;
+    padding: 0px;
+}
+.fondCouleur{
+    background-color: #d8d8d8a8;
 }
 .fond_jaune{
     background-color: #fff176;
@@ -15,11 +22,15 @@
     font-size: 24px;
     color: black;
     font-weight: bold !important;
+    margin: 10px 50px 20px;
+}
+h3{
+    margin-top: 0px;
+    height: 100%;
 }
 
 .titre{
-    border: solid black;
-    background-color: #3d34;
+    background-color: rgba(255, 197, 8, 0.808);
     font-size: 50px !important;
 }
 #jeu > button{
@@ -32,7 +43,7 @@
     font-weight: bold;
 }
 #tempsAfficher{
-    font-size: 16px;
+    font-size: 20px;
     font-weight: bold;
 }
 #message{
