@@ -194,7 +194,7 @@ function validation(e) {
     },
     messages: {
       nombreCarte: "Veuillez entrer un nombre paire entre 2 et 10 inclusivement",
-      nomUtilisateur: "Veuillez entrer votre nom",
+      nomUtilisateur: "Entrer votre nom complet  (Exemple: Prénom Nom)",
     },
     submitHandler: function (form, event) {
       event.preventDefault();
