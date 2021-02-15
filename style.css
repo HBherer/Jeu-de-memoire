@@ -16,11 +16,7 @@
     color: black;
     font-weight: bold !important;
 }
-.message{
-    color: red;
-    background-color: yellow;
 
-}
 .titre{
     border: solid black;
     background-color: #3d34;
@@ -42,4 +38,7 @@
 #message{
     font-size: 50px;
     text-align: center;
+}
+.box{
+    border-bottom: solid black !important;
 }

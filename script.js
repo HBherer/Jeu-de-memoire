@@ -190,7 +190,7 @@ function validation(e) {
     submitHandler: function (form, event) {
       event.preventDefault();
       afficheNomJoueur()
-      demarrerTimer(0.25)
+      demarrerTimer(5)
       genererBoutons()
     }
   })
