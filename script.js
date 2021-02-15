@@ -1,7 +1,6 @@
 "use strict"
 $(document).ready(validation());
 
-
 let cartesTournees = []
 let pairesTrouvees = 0
 let pairesATrouvees;
@@ -9,7 +8,10 @@ let pairesATrouvees;
 let btnValidate = document.getElementById("valider")
 btnValidate.addEventListener("click", validation)
 
-
+/**
+ * Sert à faire afficher un message de fin de partie au joueur si le temps est écouler et efface les cartes
+ *
+ */
 function afficheFinPartie() {
   let finPartie = document.createElement("P")
   const message = document.getElementById("message")
@@ -17,6 +19,10 @@ function afficheFinPartie() {
   finPartie.appendChild(texte)
   message.appendChild(finPartie)
 }
+/**
+ * Sert à afficher un message de fin du jeu si la partie est gagner et efface les cartses
+ *
+ */
 function affichePartieVictoire() {
   let finPartie = document.createElement("P")
   const message = document.getElementById("message")
@@ -24,8 +30,12 @@ function affichePartieVictoire() {
   finPartie.appendChild(texte)
   message.appendChild(finPartie)
 }
-
-
+/**
+ * Sert à calculer le temps au moment que le jeu se lance et à afficher le temps à chaque seconde
+ *
+ * @param {*} nbMinutes est le nombre de minute que le que chronomètre vas compter
+ * @return {*} retourne la variable de temps (intervale), donc se qui défini se que c'est 1 seconde pour la fonction
+ */
 function demarrerTimer(nbMinutes) {
   let temps = nbMinutes * 60
   updateAffichage(temps)
@@ -51,8 +61,11 @@ function demarrerTimer(nbMinutes) {
     }
   }
 }
-
-
+/**
+ * Sert à alléger la fonction demarrerTimer et diminuerPAsSeconde
+ *
+ * @param {*} nbSecondes est ce que représente 1 seconde pour la fonction
+ */
 function updateAffichage(nbSecondes) {
   let secondes = nbSecondes % 60
   const minutes = Math.floor(nbSecondes / 60)
@@ -63,8 +76,11 @@ function updateAffichage(nbSecondes) {
   timer.textContent = "Temps restant:" + minutes + ":" + secondes
   timer.setAttribute("dataSecondes", nbSecondes)
 }
-
-
+/**
+ * Sert à gérer une fois qu'une carte est cliqué, si carte identique, les retirer du choix. Si carte différente les remettre en caché pour que le joueur puisse les re choisir
+ *
+ * @param {*} e prend l'information du dernier clique du joueur
+ */
 function clicCarte(e) {
   nmpaireAtrouver()
   retournerCarte(e)
@@ -87,20 +103,30 @@ function clicCarte(e) {
     }
   }
 }
-
-
+/**
+ * Sert à unifier la fonction retourCarteZero1 et retourCarteZero2
+ *
+ * @param {*} e prend l'information du dernier clique du joueur
+ */
 function retourCarteZero(e) {
   retourCarteZero1(e)
   retourCarteZero2(e)
 }
-
+/**
+ * Sert à cacher la donnée de la 2e carte
+ *
+ * @param {*} e prend l'information du dernier clique du joueur
+ */
 function retourCarteZero2(e) {
   let derniereCarteClick1 = e.target
   derniereCarteClick1.textContent = " "
   let zero2 = document.createTextNode("♣")
   derniereCarteClick1.appendChild(zero2)
 }
-
+/**
+ * Sert à cacher la donnée de la 1er carte
+ *
+ */
 function retourCarteZero1() {
   for (let i = 0; i < cartesTournees.length; i++) {
     let derniereCarteClick = cartesTournees[i]
@@ -111,14 +137,18 @@ function retourCarteZero1() {
     cartesTournees.splice(0);
   }
 }
-
+/**
+ * Sert à alléger la function clicCarte
+ *
+ */
 function nmpaireAtrouver() {
   pairesATrouvees = document.getElementById("nbCarteEntrer").value
   pairesATrouvees = parseInt(pairesATrouvees)
 }
-
-
-
+/**
+ * Sert à générer les cartes une fois que l'utilisateur lance le jeu
+ *
+ */
 function genererBoutons() {
   document.title = "Jeu de Mémoire | En cour de jeu"
   let nombrePaires = document.getElementById("nbCarteEntrer").value
@@ -151,7 +181,11 @@ function genererBoutons() {
     jeu.appendChild(bouton)
   }
 }
-
+/**
+ * Sert à afficher la valeur caché de chaque carte
+ *
+ * @param {*} e prend l'information du dernier clique du joueur
+ */
 function retournerCarte(e) {
   const carteRetourner = e.target
   const nombre = carteRetourner.getAttribute("value")
@@ -159,9 +193,10 @@ function retournerCarte(e) {
   carteRetourner.textContent = " "
   carteRetourner.appendChild(texte)
 }
-
-
-
+/**
+ * Sert à afficher le nom du joueur dans le header du HTML. Selon l'entré du nom du joueur.
+ *
+ */
 function afficheNomJoueur() {
   let nom = document.createElement("P")
   nomAfficher.innerHTML = ""
@@ -177,7 +212,11 @@ jQuery.validator.addMethod("fullname", function(value, element) {
     return false;
   };
 })
-
+/**
+ * Sert à faire la validation des champs que l'utilisateur a à remplir
+ *
+ * @param {*} e prend l'information du dernier clique du joueur
+ */
 function validation(e) {
   $("form[name='formulaire']").validate({
     rules: {
