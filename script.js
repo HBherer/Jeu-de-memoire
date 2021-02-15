@@ -2,17 +2,61 @@
 $(document).ready(validation());
 
 
-let catesTournees = []
+let cartesTournees = []
 let pairesTrouvees = 0
 let pairesATrouvees;
 
 let btnValidate = document.getElementById("valider")
 btnValidate.addEventListener("click", validation)
 
+function clicCarte(e) {
+  retournerCarte(e)
+  let derniereCarteClick = e.target
+  let derni = derniereCarteClick.getAttribute("data-nombre-cache")
+  cartesTournees.push(derni)
+  console.log(cartesTournees)
+  if (cartesTournees.length === 2) {
+    if (cartesTournees[0] === cartesTournees[1]) {
+
+      pairesTrouvees.push()
+    }
+    else {
+      retourCarteZero(e)
+    }
+  }
+}
+
+
+
+function retourCarteZero(e) {
+  for (let i = 0; i < cartesTournees.length; i++) {
+    const bouton = document.set
+    let derniereCarteClick = e.target
+    derniereCarteClick.textContent = " "
+    let zero = document.createTextNode("♣")
+    derniereCarteClick.appendChild(zero)
+    cartesTournees.splice(0);
+    console.log(cartesTournees)
+  }
+}
+
+//function retourCarteZero(e) {
+//  for (let i = 0; i < cartesTournees.length; i++) {
+//    let derniereCarteClick = e.target
+//    derniereCarteClick.textContent = " "
+//    let zero = document.createTextNode("♣")
+//    derniereCarteClick.appendChild(zero)
+//    cartesTournees.splice(0);
+//    console.log(cartesTournees)
+//  }
+//}
+
+
 
 
 
 function genererBoutons() {
+  document.title = "Jeu de Mémoire | En cour de jeu"
   let nombrePaires = document.getElementById("nbCarteEntrer").value
   nombrePaires = parseInt(nombrePaires)
   const nbTours = nombrePaires
@@ -29,7 +73,6 @@ function genererBoutons() {
   }
   formul.innerHTML = ""
   let nombreBoutons = tableauCartesMelangees.length
-  // const message = valider(parametre)
   const jeu = document.getElementById("jeu")
   jeu.innerHTML = ""
   for (let i = 0; i < nombreBoutons; i++) {
@@ -37,11 +80,11 @@ function genererBoutons() {
     bouton.style.height = "100px"
     bouton.style.width = "60px"
     bouton.style.backgroundColor = "white"
-    let texte = document.createTextNode("")
-    texte = document.createTextNode("♣")
+    let texte = document.createTextNode("♣")
     bouton.setAttribute("data-nombre-cache", tableauCartesMelangees[i])
+    bouton.setAttribute("reset", "♣")
     bouton.appendChild(texte)
-    bouton.addEventListener("click", retournerCarte)
+    bouton.addEventListener("click", clicCarte)
     jeu.appendChild(bouton)
   }
 }
@@ -50,17 +93,16 @@ function retournerCarte(e) {
   const carteRetourner = e.target
   const nombre = carteRetourner.getAttribute("data-nombre-cache")
   let texte = document.createTextNode(nombre)
+  carteRetourner.textContent = " "
   carteRetourner.appendChild(texte)
 }
 
 
-function clicCarte(){
-
-}
 
 
 
-function afficheNomJoueur(){
+
+function afficheNomJoueur() {
   let nom = document.createElement("P")
   nomAfficher.innerHTML = ""
   let nomUser = document.getElementById("nomUser").value
@@ -85,10 +127,10 @@ function validation(e) {
       nombreCarte: "Veuillez entrer un nombre paire entre 2 et 10 inclusivement",
       nomUtilisateur: "Veuillez entrer votre nom",
     },
-    submitHandler: function(form, event) {
-       event.preventDefault();
-       afficheNomJoueur()
-       genererBoutons()
+    submitHandler: function (form, event) {
+      event.preventDefault();
+      afficheNomJoueur()
+      genererBoutons()
     }
   })
 }
