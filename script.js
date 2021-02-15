@@ -10,32 +10,59 @@ let btnValidate = document.getElementById("valider")
 btnValidate.addEventListener("click", validation)
 
 
-//function afficheTimer() {
-//  let time = document.createElement("P")
-//  const tempsAfficher = document.getElementById("tempsAfficher")
-//  let texte = document.createTextNode(demarrerTimer())
-//  time.appendChild(texte)
-//  tempsAfficher.appendChild(time)
-//}
-
-var intervale
-
-function demarrerTimer() {
-  let temps = 3
-  document.getElementById("tempsAfficher").innerHTML = temps
-  intervale = setInterval(diminuerParSeconde, 1000)
-  return intervale
+function afficheFinPartie() {
+  let finPartie = document.createElement("P")
+  const message = document.getElementById("message")
+  let texte = document.createTextNode("Temps écoulé, Vous avez perdu la partie!")
+  finPartie.appendChild(texte)
+  message.appendChild(finPartie)
 }
-function diminuerParSeconde(intervale) {
-  let temps = document.getElementById("tempsAfficher").innerHTML
-  temps = parseInt(temps)
-  document.getElementById("tempsAfficher").innerHTML = temps - 1
-  if (temps - 1 === 0) {
-    clearInterval(intervale)
-    // Ajouter function de fin de temps et de jeu
+function affichePartieVictoire() {
+  let finPartie = document.createElement("P")
+  const message = document.getElementById("message")
+  let texte = document.createTextNode("Bravo! Vous avez fini la partie avant que le temps ne soit écoulé complètement!")
+  finPartie.appendChild(texte)
+  message.appendChild(finPartie)
+}
+
+
+function demarrerTimer(nbMinutes) {
+  let temps = nbMinutes * 60
+  updateAffichage(temps)
+  let secondes = temps % 60
+  const minutes = Math.floor(temps / 60)
+  if (secondes < 10) {
+    secondes = "0" + secondes
+  }
+  document.getElementById("tempsAfficher").textContent = "Temps restant:" + minutes + ":" + secondes
+  document.getElementById("tempsAfficher").setAttribute("dataSecondes", temps)
+  var intervale = setInterval(diminuerParSeconde, 1000)
+  return intervale
+  function diminuerParSeconde() {
+    let nbSecondes = document.getElementById("tempsAfficher").getAttribute("dataSecondes")
+    nbSecondes = parseInt(nbSecondes)
+    nbSecondes = nbSecondes - 1
+    updateAffichage(nbSecondes)
+    if (nbSecondes === 0) {
+      clearInterval(intervale)
+      document.title = "Jeu de Mémoire | Vous avez Perdu!"
+      jeu.textContent = ""
+      afficheFinPartie()
+    }
   }
 }
 
+
+function updateAffichage(nbSecondes) {
+  let secondes = nbSecondes % 60
+  const minutes = Math.floor(nbSecondes / 60)
+  if (secondes < 10) {
+    secondes = "0" + secondes
+  }
+  const timer = document.getElementById("tempsAfficher")
+  timer.textContent = "Temps restant:" + minutes + ":" + secondes
+  timer.setAttribute("dataSecondes", nbSecondes)
+}
 
 
 function clicCarte(e) {
@@ -50,7 +77,9 @@ function clicCarte(e) {
       cartesTournees.splice(0);
       if (pairesTrouvees === pairesATrouvees) {
         document.title = "Jeu de Mémoire | Vous avez Gagner!"
-        alert("Le jeu est fini!")
+        jeu.textContent = ""
+        affichePartieVictoire()
+        demarrerTimer()
       }
     }
     else {
@@ -133,9 +162,6 @@ function retournerCarte(e) {
 
 
 
-
-
-
 function afficheNomJoueur() {
   let nom = document.createElement("P")
   nomAfficher.innerHTML = ""
@@ -164,7 +190,7 @@ function validation(e) {
     submitHandler: function (form, event) {
       event.preventDefault();
       afficheNomJoueur()
-      demarrerTimer()
+      demarrerTimer(0.25)
       genererBoutons()
     }
   })
