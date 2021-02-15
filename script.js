@@ -12,26 +12,23 @@ btnValidate.addEventListener("click", validation)
 
 
 
-
-
 function clicCarte(e) {
   nmpaireAtrouver()
   retournerCarte(e)
   cartesTournees.push(e.target)
-  console.log(cartesTournees)
+  cartesTournees[0].disabled = true
   if (cartesTournees.length === 2) {
-    if (cartesTournees[0].values !== cartesTournees[1].values) {
+    if (cartesTournees[0].value == cartesTournees[1].value) {
       pairesTrouvees = pairesTrouvees + 1
+      cartesTournees[1].disabled = true
       cartesTournees.splice(0);
-      console.log("ouiouiouioui")
       if (pairesTrouvees === pairesATrouvees) {
+        document.title = "Jeu de Mémoire | Vous avez Gagner!"
         alert("Le jeu est fini!")
       }
     }
     else {
       setInterval(retourCarteZero(e), 2000)
-      
-      console.log("NONONONONO")
     }
   }
 }
@@ -54,7 +51,7 @@ function retourCarteZero1(e) {
     derniereCarteClick.textContent = " "
     let zero = document.createTextNode("♣")
     derniereCarteClick.appendChild(zero)
-
+    cartesTournees[i].disabled = false
     cartesTournees.splice(0);
     console.log(cartesTournees)
   }
@@ -63,7 +60,6 @@ function retourCarteZero1(e) {
 function nmpaireAtrouver() {
   pairesATrouvees = document.getElementById("nbCarteEntrer").value
   pairesATrouvees = parseInt(pairesATrouvees)
-  console.log(pairesATrouvees)
 }
 
 
@@ -94,7 +90,7 @@ function genererBoutons() {
     bouton.style.width = "60px"
     bouton.style.backgroundColor = "white"
     let texte = document.createTextNode("♣")
-    bouton.setAttribute("dataNombreCache", tableauCartesMelangees[i])
+    bouton.setAttribute("value", tableauCartesMelangees[i])
     bouton.appendChild(texte)
     bouton.addEventListener("click", clicCarte)
     jeu.appendChild(bouton)
@@ -103,7 +99,7 @@ function genererBoutons() {
 
 function retournerCarte(e) {
   const carteRetourner = e.target
-  const nombre = carteRetourner.getAttribute("dataNombreCache")
+  const nombre = carteRetourner.getAttribute("value")
   let texte = document.createTextNode(nombre)
   carteRetourner.textContent = " "
   carteRetourner.appendChild(texte)
