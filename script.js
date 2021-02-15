@@ -9,49 +9,62 @@ let pairesATrouvees;
 let btnValidate = document.getElementById("valider")
 btnValidate.addEventListener("click", validation)
 
+
+
+
+
+
 function clicCarte(e) {
+  nmpaireAtrouver()
   retournerCarte(e)
-  let derniereCarteClick = e.target
-  let derni = derniereCarteClick.getAttribute("data-nombre-cache")
-  cartesTournees.push(derni)
+  cartesTournees.push(e.target)
   console.log(cartesTournees)
   if (cartesTournees.length === 2) {
-    if (cartesTournees[0] === cartesTournees[1]) {
-
-      pairesTrouvees.push()
+    if (cartesTournees[0].values !== cartesTournees[1].values) {
+      pairesTrouvees = pairesTrouvees + 1
+      cartesTournees.splice(0);
+      console.log("ouiouiouioui")
+      if (pairesTrouvees === pairesATrouvees) {
+        alert("Le jeu est fini!")
+      }
     }
     else {
-      retourCarteZero(e)
+      setInterval(retourCarteZero(e), 2000)
+      
+      console.log("NONONONONO")
     }
   }
 }
 
+function retourCarteZero(e){
+  retourCarteZero1(e)
+  retourCarteZero2(e)
+}
 
+function retourCarteZero2(e) {
+  let derniereCarteClick1 = e.target
+      derniereCarteClick1.textContent = " "
+      let zero2 = document.createTextNode("♣")
+      derniereCarteClick1.appendChild(zero2)
+}
 
-function retourCarteZero(e) {
+function retourCarteZero1(e) {
   for (let i = 0; i < cartesTournees.length; i++) {
-    const bouton = document.set
-    let derniereCarteClick = e.target
+    let derniereCarteClick = cartesTournees[i]
     derniereCarteClick.textContent = " "
     let zero = document.createTextNode("♣")
     derniereCarteClick.appendChild(zero)
+
     cartesTournees.splice(0);
     console.log(cartesTournees)
   }
 }
 
-//function retourCarteZero(e) {
-//  for (let i = 0; i < cartesTournees.length; i++) {
-//    let derniereCarteClick = e.target
-//    derniereCarteClick.textContent = " "
-//    let zero = document.createTextNode("♣")
-//    derniereCarteClick.appendChild(zero)
-//    cartesTournees.splice(0);
-//    console.log(cartesTournees)
-//  }
-//}
-
-
+function nmpaireAtrouver() {
+  pairesATrouvees = document.getElementById("nbCarteEntrer").value
+  pairesATrouvees = parseInt(pairesATrouvees)
+  console.log(pairesATrouvees)
+}
 
 
 
@@ -71,7 +84,7 @@ function genererBoutons() {
     tableauCartesMelangees.push(tableauCartes[index]);
     tableauCartes.splice(index, 1);
   }
-  formul.innerHTML = ""
+  formul.style.visibility = "hidden"
   let nombreBoutons = tableauCartesMelangees.length
   const jeu = document.getElementById("jeu")
   jeu.innerHTML = ""
@@ -81,8 +94,7 @@ function genererBoutons() {
     bouton.style.width = "60px"
     bouton.style.backgroundColor = "white"
     let texte = document.createTextNode("♣")
-    bouton.setAttribute("data-nombre-cache", tableauCartesMelangees[i])
-    bouton.setAttribute("reset", "♣")
+    bouton.setAttribute("dataNombreCache", tableauCartesMelangees[i])
     bouton.appendChild(texte)
     bouton.addEventListener("click", clicCarte)
     jeu.appendChild(bouton)
@@ -91,7 +103,7 @@ function genererBoutons() {
 
 function retournerCarte(e) {
   const carteRetourner = e.target
-  const nombre = carteRetourner.getAttribute("data-nombre-cache")
+  const nombre = carteRetourner.getAttribute("dataNombreCache")
   let texte = document.createTextNode(nombre)
   carteRetourner.textContent = " "
   carteRetourner.appendChild(texte)
@@ -138,19 +150,7 @@ function validation(e) {
 
 
 
-//const form = document.getElementById("formConfig")
-//form.addEventListener("submit, valider")
 
-//function valider(e){
-//    const messages = []
-//    let nbCarte = document.inscription.nbCarte.value
-//     nbCarte = // reste à le mettre en nombre paire tout le temps
-//}
-
-//if (Message.length > 0) {
-//    e.preventDefault()
-//    const div = document.getElementById("message")
-//}
 
 // setTimeout(nomDeLaFonction, 2000)
 // setInterval(nomVariable, 2000)
